@@ -1,0 +1,28 @@
+# Build
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+.vs/
+
+# ASP.NET artifacts
+wwwroot/lib/
+*.db
+
+# Logs
+*.log
+
+# dotnet artifacts
+project.lock.json
+project.fragment.lock.json
+
+# OS files
+.DS_Store
+Thumbs.db

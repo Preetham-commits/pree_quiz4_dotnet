@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+Console.WriteLine("Database access has already been done on April 1, 2025 by Preetham");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
