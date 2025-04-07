@@ -16,7 +16,10 @@ steps:
   - script: dotnet build PreeQuiz4App/PreeQuiz4App.csproj --configuration $(buildConfiguration)
     displayName: 'Build project'
 
-  - script: dotnet publish PreeQuiz4App/PreeQuiz4App.csproj -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+  - script: >
+      dotnet publish PreeQuiz4App/PreeQuiz4App.csproj 
+      --configuration $(buildConfiguration) 
+      --output "$(Build.ArtifactStagingDirectory)"
     displayName: 'Publish project'
 
   - task: PublishBuildArtifacts@1
