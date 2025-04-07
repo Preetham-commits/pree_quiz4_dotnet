@@ -2,27 +2,21 @@ trigger:
   - main
 
 pool:
-  name: Default  # For self-hosted agent
-  # Uncomment below if using MSFT-hosted
-  # vmImage: 'windows-latest'
-
-variables:
-  buildConfiguration: 'Release'
+  name: Default  # or the name of the agent pool you used
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '7.x.x'  # or your target version
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '7.0.x'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'Build project'
+  - script: dotnet build PreeQuiz4App.sln
+    displayName: 'Build solution'
 
-- script: dotnet publish -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
-  displayName: 'Publish artifacts'
+  - script: dotnet publish PreeQuiz4App.sln -c Release -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Publish app'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathToPublish: '$(Build.ArtifactStagingDirectory)'
+      artifactName: 'drop'
