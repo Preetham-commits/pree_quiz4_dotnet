@@ -2,7 +2,7 @@ trigger:
   - main
 
 pool:
-  name: Lab4  # This tells Azure DevOps to use your custom agent pool
+  name: Lab4
 
 variables:
   buildConfiguration: 'Release'
@@ -11,13 +11,13 @@ steps:
   - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
-      version: '7.0.x'
+      version: '7.0.410'
 
-  - script: dotnet build PreeQuiz4App.sln --configuration $(buildConfiguration)
-    displayName: 'Build solution'
+  - script: dotnet build PreeQuiz4App/PreeQuiz4App.csproj --configuration $(buildConfiguration)
+    displayName: 'Build project'
 
-  - script: dotnet publish PreeQuiz4App.sln -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
-    displayName: 'Publish app'
+  - script: dotnet publish PreeQuiz4App/PreeQuiz4App.csproj -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Publish project'
 
   - task: PublishBuildArtifacts@1
     inputs:
